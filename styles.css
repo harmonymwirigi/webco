@@ -34,6 +34,17 @@
   font-style: normal;
   font-display: optional;
 }
+@font-face{
+  font-family: "Lovelo";
+  src: local("Lovelo"), 
+       url("assets/fonts/Lovelo.woff2") format("woff2"),
+       url("assets/fonts/Lovelo.woff") format("woff"),
+       url("assets/fonts/Lovelo.ttf") format("truetype"),
+       url("assets/fonts/Lovelo.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+}
 
 *{ box-sizing: border-box; }
 html, body{ 
@@ -399,6 +410,30 @@ a{ color: inherit; text-decoration: none; }
   transform: none;
   margin: 0;
   text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  color: #ff4a4a;
+  text-decoration: underline;
+  text-decoration-color: #ff4a4a;
+  text-underline-offset: 4px;
+  display: inline-block;
+}
+.about-title-overlay:hover{
+  color: #e63939;
+  text-decoration-color: #e63939;
+  text-decoration-thickness: 2px;
+}
+.about-title-overlay::after{
+  content: ' →';
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  transform: translateX(-5px);
+}
+.about-title-overlay:hover::after{
+  opacity: 1;
+  transform: translateX(0);
 }
 .about-right .about-title{
   margin-top: 0;
@@ -729,6 +764,66 @@ a{ color: inherit; text-decoration: none; }
   line-height: 1.4;
 }
 
+/* Podcast & Blog */
+.podcast-blog{ 
+  background: var(--white); 
+  color: #0a0a0a;
+  padding: 56px 0;
+}
+.podcast-blog-title{
+  font-family: "Lovelo", "Arial Black", "Arial Bold", sans-serif;
+  font-size: 37px;
+  font-weight: 400;
+  color: #0a0a0a;
+  text-align: center;
+  margin: 0 0 40px;
+  line-height: 1.2;
+}
+.podcast-blog-images{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  padding: 0 60px;
+}
+.podcast-blog-img{
+  display: inline-block;
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+}
+
+/* Patrocinadores */
+.patrocinadores{ 
+  background: var(--white); 
+  color: #0a0a0a;
+  padding: 56px 0;
+}
+.patrocinadores-title{
+  font-family: "Lovelo", "Arial Black", "Arial Bold", sans-serif;
+  font-size: 42.2px;
+  font-weight: 400;
+  color: #0a0a0a;
+  text-align: center;
+  margin: 0 0 40px;
+  line-height: 1.2;
+}
+.patrocinadores-images{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  padding: 0 60px;
+}
+.patrocinadores-img{
+  display: inline-block;
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+}
+
 /* Contact */
 .contact{ 
   background: var(--white); 
@@ -888,6 +983,97 @@ a{ color: inherit; text-decoration: none; }
 /* Footer */
 .site-footer{ background: #000; color: #8aa0b2; padding: 30px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); }
 
+/* Modal */
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+.modal.open{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content{
+  background-color: var(--white);
+  margin: auto;
+  padding: 40px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn{
+  from{
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modal-close{
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #0a0a0a;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1;
+}
+.modal-close:hover{
+  color: #ff4a4a;
+}
+.modal-title{
+  font-family: "Buffalo", "Brush Script MT", cursive;
+  font-size: 42px;
+  color: #0a0a0a;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+.modal-subtitle{
+  font-family: "Agrandir", "Space Grotesk", "Inter", sans-serif;
+  font-size: 18px;
+  color: #666;
+  margin: 0 0 30px;
+  font-style: italic;
+}
+.modal-body{
+  font-family: "Agrandir", "Space Grotesk", "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #0a0a0a;
+}
+.modal-body p{
+  margin: 0 0 20px;
+}
+.modal-body p:last-child{
+  margin-bottom: 0;
+}
+.modal-body strong{
+  font-weight: 600;
+  color: #0a0a0a;
+}
+#aboutMeBtn:hover{
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 /* Responsive: Mobile adjustments */
 @media (max-width: 768px){
   .container{
@@ -929,7 +1115,7 @@ a{ color: inherit; text-decoration: none; }
     pointer-events: none;
   }
   .hero-title{
-    font-size: clamp(28px, 8vw, 42.2px); /* Scale down on mobile but maintain ratio */
+    font-size: clamp(20px, 6vw, 32px); /* Smaller on mobile for better fit */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1064,6 +1250,36 @@ a{ color: inherit; text-decoration: none; }
     width: 50px;
     height: 50px;
   }
+  .podcast-blog-title{
+    font-size: clamp(24px, 8vw, 37px);
+    margin-bottom: 30px;
+  }
+  .podcast-blog-images{
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    padding: 0;
+  }
+  .podcast-blog-img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+  .patrocinadores-title{
+    font-size: clamp(28px, 8vw, 42.2px);
+    margin-bottom: 30px;
+  }
+  .patrocinadores-images{
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    padding: 0;
+  }
+  .patrocinadores-img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
   .contact-title{
     font-size: clamp(36px, 10vw, 61.2px);
     margin-bottom: 30px;
@@ -1168,6 +1384,14 @@ a{ color: inherit; text-decoration: none; }
     padding-right: 20px !important;
     margin: 0 !important;
   }
+  .podcast-blog-images{
+    justify-content: space-between;
+    padding: 0 80px;
+  }
+  .patrocinadores-images{
+    justify-content: space-between;
+    padding: 0 80px;
+  }
   .site-header .container{
     padding-inline: 0 !important;
     width: 100% !important;
@@ -1176,6 +1400,28 @@ a{ color: inherit; text-decoration: none; }
   }
   .container{
     padding-inline: 40px;
+  }
+  .modal-content{
+    width: 95%;
+    max-width: 95%;
+    padding: 30px 20px;
+    max-height: 85vh;
+  }
+  .modal-title{
+    font-size: clamp(28px, 6vw, 42px);
+  }
+  .modal-subtitle{
+    font-size: clamp(14px, 3vw, 18px);
+    margin-bottom: 20px;
+  }
+  .modal-body{
+    font-size: clamp(14px, 3vw, 16px);
+    line-height: 1.7;
+  }
+  .modal-close{
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
   }
 }
 

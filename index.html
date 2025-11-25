@@ -83,14 +83,14 @@
       <div class="container">
         <div class="about-grid">
           <div class="about-left">
-            <h2 class="about-title about-title-overlay">Sobre mí</h2>
+            <h2 class="about-title about-title-overlay" id="aboutMeBtn">Sobre mí</h2>
           </div>
           <div class="co-logo-wrapper">
             <img src="images/8.png" alt="CO Logo" class="co-logo">
           </div>
           <div class="about-right">
             <h2 class="about-title">Descarga <br>Mi currículum</h2>
-            <a class="download-btn" href="docs/CV_Carlos_Olid.pdf" download>
+            <a class="download-btn" href="#" onclick="downloadFile('docs/CV Carlos Olid.pdf', 'CV_Carlos_Olid.pdf'); return false;">
               <i class="fa-solid fa-download"></i>
               <span>DOWNLOAD</span>
             </a>
@@ -107,7 +107,7 @@
           <div class="project-left">
             <h2 class="project-title">DESCARGA</h2>
             <h2 class="project-title">MI PROYECTO</h2>
-            <a class="download-btn" href="docs/Proyecto.pdf" download>
+            <a class="download-btn" href="#" onclick="downloadFile('docs/Proyecto.pdf', 'Proyecto.pdf'); return false;">
               <i class="fa-solid fa-download"></i>
               <span>DOWNLOAD</span>
             </a>
@@ -227,8 +227,19 @@
       </div>
     </section>
 
+    <!-- PODCAST & BLOG -->
+    <section class="section podcast-blog" id="podcast-blog">
+      <div class="container">
+        <h2 class="podcast-blog-title">Hakea tu fútbol</h2>
+        <div class="podcast-blog-images">
+          <img src="images/spotfypodcast.PNG" alt="Spotify Podcast" class="podcast-blog-img">
+          <img src="images/blog.PNG" alt="Blog" class="podcast-blog-img">
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
-    <section class="section contact" id="contact">
+    <!-- <section class="section contact" id="contact">
       <div class="container contact-inner">
         <h2 class="contact-title">Hakea tu fútbol</h2>
         <div class="contact-graphics">
@@ -242,7 +253,7 @@
           <img src="images/N3.png" alt="" class="contact-image">
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- MEDIA -->
     <section class="section media" id="media">
@@ -293,11 +304,42 @@
       </div>
     </section>
 
+    <!-- PATROCINADORES -->
+    <section class="section patrocinadores" id="patrocinadores">
+      <div class="container">
+        <h2 class="patrocinadores-title">Patrocinadores</h2>
+        <div class="patrocinadores-images">
+          <img src="images/dnc.PNG" alt="DNC" class="patrocinadores-img">
+          <img src="images/grouphm.PNG" alt="Fondation Groupe HM" class="patrocinadores-img">
+        </div>
+      </div>
+    </section>
+
     <footer class="site-footer">
       <div class="container">
         <small>© <span id="year"></span> Carlos Olid</small>
       </div>
     </footer>
+
+    <!-- About Me Modal -->
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <h2 class="modal-title">Carlos Olid</h2>
+        <p class="modal-subtitle">Sabadell, 4 de enero de 1983</p>
+        <div class="modal-body">
+          <p>Carlos Olid (Sabadell, 4 de enero de 1983) es entrenador de fútbol con titulación UEFA Pro, psicólogo deportivo y experto en liderazgo en sistemas complejos.</p>
+          
+          <p>Formado en una familia profundamente futbolera, desarrolló desde joven una mirada analítica, creativa e inconformista que ha marcado su trayectoria profesional. Su trabajo se caracteriza por integrar análisis del juego, psicología del rendimiento y neurociencia aplicada, entendiendo el fútbol como un sistema vivo donde cada decisión, emoción e interacción altera el comportamiento colectivo.</p>
+          
+          <p>A lo largo de su carrera ha construido un enfoque propio que combina táctica, ciencia y gestión emocional. Entre sus aportaciones destaca el <strong>Sistema de Puertas</strong>, una metodología que propone una nueva manera de interpretar el espacio, la anticipación y las relaciones dentro del juego, ofreciendo un marco más inteligente y adaptable para la toma de decisiones. Asimismo, es autor de la <strong>Teoría de la Temperatura Emocional en el Fútbol</strong>, un modelo que analiza cómo las emociones influyen en la claridad mental y en el rendimiento real de jugadores y equipos, aportando una herramienta práctica para regular la activación y entender las derivas emocionales durante la competición.</p>
+          
+          <p>Ha trabajado con clubes, academias y selecciones nacionales, participando en proyectos de alto rendimiento, desarrollo metodológico y formación avanzada. Su especialización abarca la lectura estructural del juego, la regulación emocional bajo presión, la toma de decisiones en entornos complejos y el liderazgo aplicado al deporte profesional. Desde esta perspectiva multidisciplinar, ayuda a deportistas, entrenadores y organizaciones a pensar mejor, decidir mejor y rendir mejor en escenarios donde la exigencia, la incertidumbre y la complejidad son constantes.</p>
+          
+          <p>Con un enfoque sólido, riguroso y adaptado al fútbol moderno, Carlos Olid se ha consolidado como una referencia en el estudio del rendimiento emocional, la interpretación del juego y el liderazgo en sistemas complejos, integrando ciencia, psicología y metodología para mejorar la estructura y el comportamiento de equipos y jugadores.</p>
+        </div>
+      </div>
+    </div>
 
     <script src="scripts.js"></script>
   </body>

@@ -105,6 +105,87 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 })();
 
 
+/* About Me Modal */
+(function aboutModal(){
+  const modal = $('#aboutModal');
+  const btn = $('#aboutMeBtn');
+  const closeBtn = $('#closeModal');
+  
+  if (!modal || !btn) return;
+  
+  // Close modal function
+  const closeModal = () => {
+    modal.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scrolling
+  };
+  
+  // Open modal
+  btn.addEventListener('click', () => {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  });
+  
+  // Close modal with close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+  
+  // Close modal when clicking outside
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+})();
+
+/* Download File Function */
+async function downloadFile(filePath, fileName) {
+  try {
+    // Fetch the file as a Blob
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const blob = await response.blob();
+    
+    // Create a Blob URL from the file
+    const url = window.URL.createObjectURL(blob);
+    
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName; // Force download with filename
+    link.style.display = 'none';
+    
+    // Append to body, click, then remove
+    document.body.appendChild(link);
+    link.click();
+    
+    // Clean up: remove link and revoke Blob URL
+    setTimeout(() => {
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }, 100);
+  } catch (error) {
+    console.error('Download failed:', error);
+    // Fallback: try direct download if fetch fails
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = fileName;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
 /* Scroll-down button to bottom of page */
 (function scrollDown(){
   const btn = document.getElementById('scrollDown');
