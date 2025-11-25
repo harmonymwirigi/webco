@@ -524,9 +524,21 @@ a{ color: inherit; text-decoration: none; }
 .project-left{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+}
+.project-download-item{
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  flex: 1;
+}
+.project-download-item-centered{
+  align-items: center;
+}
+.project-download-item-centered .project-title{
+  text-align: center;
 }
 .project-title{
   font-family: "Agrandir", "Space Grotesk", "Inter", sans-serif;
@@ -535,6 +547,34 @@ a{ color: inherit; text-decoration: none; }
   color: #ffffff;
   margin: 0;
   line-height: 1.2;
+}
+.project-left .download-btn,
+.project-download-item .download-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 0;
+  padding: 12px 24px;
+  background: #ff4a4a;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-family: "Agrandir", "Space Grotesk", "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(255, 74, 74, 0.3);
+  transition: all 0.2s ease;
+}
+.project-left .download-btn:hover,
+.project-download-item .download-btn:hover{
+  background: #e63939;
+  box-shadow: 0 6px 16px rgba(255, 74, 74, 0.4);
+  transform: translateY(-1px);
 }
 .project-right{
   flex: 1;
@@ -631,6 +671,19 @@ a{ color: inherit; text-decoration: none; }
   line-height: 1.2;
   text-align: center;
 }
+.whatsapp-button{
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+.whatsapp-button:hover{
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+.whatsapp-button:active{
+  transform: scale(0.98);
+}
 .contact-me-icon{
   width: auto;
   max-width: 100%;
@@ -683,6 +736,12 @@ a{ color: inherit; text-decoration: none; }
   width: 100%; 
   height: auto;
   object-fit: cover; 
+  display: block;
+}
+.news-overlay-img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 .news-btn{
@@ -1217,6 +1276,9 @@ a{ color: inherit; text-decoration: none; }
     font-size: clamp(18px, 3vw, 24px);
   }
   .project-left{
+    gap: 30px;
+  }
+  .project-download-item{
     gap: 15px;
   }
   .download-btn{
