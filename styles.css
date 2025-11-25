@@ -452,7 +452,7 @@ a{ color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 20%;
   height: 80vh; /* Reduced from 100vh - adjust this value as needed */
   padding: 40px 0;
@@ -472,6 +472,7 @@ a{ color: inherit; text-decoration: none; }
   gap: 10px;
   cursor: pointer;
   margin: 0;
+  margin-top: 0;
   padding: 12px 24px;
   align-self: center;
   background: #ff4a4a;
