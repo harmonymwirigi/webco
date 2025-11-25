@@ -745,6 +745,15 @@ a{ color: inherit; text-decoration: none; }
   object-fit: contain;
   display: block;
 }
+.card a{
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.card a:hover .news-overlay-img{
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
 .news-btn{
   width: 100%;
   height: 50px;
