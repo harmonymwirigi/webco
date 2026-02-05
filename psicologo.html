@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Carlos Olid — Psicólogo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --accent-yellow: #ffc700;
+            --brand-red: #9b1818;
+            --match-grey: #c4bdc0; 
+            --dark-top: #000000;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; 
+            background-color: var(--match-grey);
+        }
+
+        .lp-body {
+            background: linear-gradient(180deg, var(--dark-top) 0%, var(--match-grey) 80%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- 1. PORTRAIT SECTION --- */
+        .lp-hero {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .lp-portrait-wrapper {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .lp-portrait {
+            width: 100%;
+            height: auto;
+            max-height: 80vh; 
+            object-fit: contain;
+            display: block;
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+
+        /* --- 2. TITLES SECTION --- */
+        .lp-titles-overlay {
+            width: 100%;
+            position: relative;
+            z-index: 200; 
+            margin-top: -180px; 
+            padding: 0 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .lp-title-main {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(60px, 14vw, 110px);
+            color: var(--accent-yellow);
+            margin: 0;
+            line-height: 0.85;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+        }
+
+        .lp-title-sub {
+            font-size: clamp(16px, 3.8vw, 36px);
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin: 10px 0;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.9);
+        }
+
+        .lp-hr {
+            width: 70%;
+            max-width: 550px;
+            border: 0; 
+            height: 4px;
+            background-color: var(--accent-yellow);
+            margin: 15px auto 40px auto;
+            display: block;
+        }
+
+        /* --- 3. COMBINED IMAGE SECTION --- */
+        .lp-combined-wrapper {
+            width: 100%;
+            position: relative;
+            z-index: 50; 
+            margin: 0 auto;
+        }
+
+        .lp-fondowitharch-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- 4. OVERLAY CONTENT --- */
+        .lp-overlay-content {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 60;
+        }
+
+        .lp-overlay-top {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 15%; 
+            min-height: 40%;
+        }
+
+        .lp-overlay-left-spacer { 
+            flex: 0 0 55%; 
+        }
+
+        .lp-overlay-right-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-left: 10px;
+        }
+
+        .lp-main-quote {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(18px, 4.2vw, 40px);
+            color: #ffffff; line-height: 1.1; margin: 0;
+            text-transform: uppercase;
+        }
+
+        .lp-follow-text {
+            font-family: 'Bebas Neue', cursive;
+            color: var(--brand-red);
+            font-size: clamp(12px, 2.8vw, 24px); margin: 0;
+        }
+
+        .lp-insta-line {
+            display: flex; align-items: center; gap: 6px;
+            font-size: clamp(10px, 2.5vw, 16px); font-weight: 700;
+        }
+
+        .lp-overlay-bottom {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            align-items: center;
+            padding-bottom: 60px; 
+        }
+
+        .lp-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px; 
+            width: 100%;
+            max-width: 750px; 
+        }
+
+        .lp-icon-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        
+        .lp-icon-item:hover { transform: translateY(-5px); }
+
+        .lp-icon-img {
+            width: clamp(60px, 15vw, 85px); 
+            height: clamp(60px, 15vw, 85px);
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .lp-icon-label { 
+            font-weight: 800; font-size: clamp(9px, 2vw, 13px); 
+            text-transform: uppercase; color: #000; line-height: 1.1;
+        }
+
+        .lp-btn-gold {
+            background: var(--accent-yellow);
+            color: #000; 
+            font-weight: 800; 
+            padding: 12px 45px;
+            border-radius: 50px; 
+            font-size: 16px; 
+            text-transform: uppercase;
+            text-decoration: none; 
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%); 
+            z-index: 100;
+            white-space: nowrap;
+        }
+
+        /* --- 5. FOOTER BAR --- */
+        .lp-footer-bar {
+            width: 100%;
+            height: 80px; 
+            background: linear-gradient(180deg, #333333 0%, #111111 100%);
+            z-index: 40;
+        }
+
+        /* =========================================
+           DESKTOP OPTIMIZATIONS (Lower & Closer)
+           ========================================= */
+        @media (min-width: 1024px) {
+            .lp-combined-wrapper {
+                max-width: 1400px;
+            }
+
+            .lp-overlay-top {
+                padding-top: 10%;
+            }
+
+            /* MOVED LOWER & CLOSER */
+            .lp-icon-grid {
+                max-width: 700px; /* Brighter closer together */
+                gap: 30px;        /* Tighter gap */
+            }
+
+            .lp-overlay-bottom {
+                padding-bottom: 65px; /* Pushed lower towards the button */
+            }
+
+            .lp-icon-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .lp-icon-label {
+                font-size: 15px;
+            }
+        }
+
+        /* =========================================
+           MOBILE OPTIMIZATIONS
+           ========================================= */
+        @media (max-width: 768px) {
+            .lp-titles-overlay { margin-top: -140px; }
+            .lp-overlay-top { padding-top: 22%; }
+            .lp-overlay-left-spacer { flex: 0 0 58%; }
+            .lp-overlay-bottom { padding-bottom: 50px; }
+            .lp-icon-grid { gap: 8px; max-width: 95%; }
+            .lp-portrait { max-height: 55vh; }
+        }
+    </style>
+</head>
+<body class="lp-body">
+
+    <main class="lp-hero">
+        <div class="lp-portrait-wrapper">
+            <img src="images/10.png" alt="Carlos Olid" class="lp-portrait">
+        </div>
+    </main>
+
+    <div class="lp-titles-overlay">
+        <h1 class="lp-title-main">PSICÓLOGO</h1>
+        <p class="lp-title-sub">EXPERTO EN NEURODECISIONES</p>
+        <hr class="lp-hr">
+    </div>
+
+    <section class="lp-combined-wrapper">
+        <picture>
+            <source media="(min-width: 1024px)" srcset="images/fondowitharchdesktop.png">
+            <img src="images/fondowitharch.PNG" alt="Carlos Olid" class="lp-fondowitharch-img">
+        </picture>
+
+        <div class="lp-overlay-content">
+            <div class="lp-overlay-top">
+                <div class="lp-overlay-left-spacer"></div>
+                <div class="lp-overlay-right-text">
+                    <p class="lp-main-quote">“LO MEJOR DE MÍ ES QUE PUEDO SACAR LO MEJOR DE TI “</p>
+                    <p class="lp-follow-text">SÍGUEME Y COMPRUÉBALO</p>
+                    <div class="lp-insta-line">
+                        <i class="fa-brands fa-instagram" style="color:#E1306C"></i>
+                        <span>@carlos.olid</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lp-overlay-bottom">
+                <div class="lp-icon-grid">
+                    <a href="index.html" class="lp-icon-item">
+                        <img src="images/futol.png" alt="Fútbol" class="lp-icon-img">
+                        <div class="lp-icon-label">Fútbol</div>
+                    </a>
+                    <a href="#" class="lp-icon-item">
+                        <img src="images/psychology.png" alt="Psicología" class="lp-icon-img">
+                        <div class="lp-icon-label">PSICOLOGÍA<br><small style="font-size: 0.7em">Emocional</small></div>
+                    </a>
+                    <a href="#" class="lp-icon-item">
+                        <img src="images/leadership.png" alt="Liderazgo" class="lp-icon-img">
+                        <div class="lp-icon-label">LIDERAZGO<br><small style="font-size: 0.7em">en Sist. Complejos</small></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a href="#about" class="lp-btn-gold">SOBRE MÍ</a>
+    </section>
+
+    <div class="lp-footer-bar"></div>
+
+</body>
+</html>
