@@ -14,6 +14,15 @@
             --brand-red: #9b1818;
             --match-grey: #c4bdc0; 
             --dark-top: #000000;
+
+            /* --- Photo section: position/size the portrait (fondo.png) ---
+             * Current values below are the preferred positions for phone and laptop.
+             * SIZE: lower % = smaller, higher % = larger. VERTICAL: lower % = higher on screen, higher % = lower.
+             */
+            --lp-photo-width-desktop: 50%;
+            --lp-photo-width-mobile: 79%;
+            --lp-photo-pos-y-desktop: 100%;
+            --lp-photo-pos-y-mobile: 50%;
         }
 
         body, html {
@@ -46,6 +55,7 @@
         .lp-portrait-wrapper {
             width: 100%;
             max-width: 1100px;
+            border: none;
         }
 
         .lp-portrait {
@@ -54,6 +64,7 @@
             max-height: 80vh; 
             object-fit: contain;
             display: block;
+            border: none;
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
         }
@@ -97,25 +108,88 @@
             display: block;
         }
 
-        /* --- 3. COMBINED IMAGE SECTION --- */
+        /* --- 3. COMBINED SECTION: full-width arch, photo left (>50%), content right --- */
         .lp-combined-wrapper {
             width: 100%;
             position: relative;
-            z-index: 50; 
+            z-index: 50;
             margin: 0 auto;
+            aspect-ratio: 3 / 4;
+            max-height: 88vh;
+            overflow: visible;
+            background: transparent;
+            border: none;
+            box-shadow: none;
         }
 
-        .lp-fondowitharch-img {
+        /* Full-width canvas: bg + photo + arch (arch spans entire width) */
+        .lp-combined-canvas {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
+            background: transparent;
+        }
+
+        .lp-combined-bg {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+        }
+
+        /* Photo: size and position use variables from :root; no borders */
+        .lp-combined-photo-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--lp-photo-width-desktop);
+            height: 100%;
+            overflow: hidden;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            box-sizing: border-box;
+        }
+
+        .lp-combined-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left var(--lp-photo-pos-y-desktop);
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Arch: full width, curve in bottom ~25% so face stays well above */
+        .lp-arch-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .lp-arch-overlay svg {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             display: block;
         }
 
-        /* --- 4. OVERLAY CONTENT --- */
+        /* Overlay content: right side, quote right-aligned, icons + button centered */
         .lp-overlay-content {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             padding: 0 20px;
@@ -127,12 +201,13 @@
             flex: 0 0 auto;
             display: flex;
             align-items: flex-start;
-            padding-top: 15%; 
-            min-height: 40%;
+            padding-top: 14%;
+            min-height: 38%;
         }
 
-        .lp-overlay-left-spacer { 
-            flex: 0 0 55%; 
+        /* Text on right; spacer matches photo width variable */
+        .lp-overlay-left-spacer {
+            flex: 0 0 var(--lp-photo-width-desktop);
         }
 
         .lp-overlay-right-text {
@@ -140,7 +215,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding-left: 10px;
+            text-align: right;
         }
 
         .lp-main-quote {
@@ -157,7 +232,7 @@
         }
 
         .lp-insta-line {
-            display: flex; align-items: center; gap: 6px;
+            display: flex; align-items: center; justify-content: flex-end; gap: 6px;
             font-size: clamp(10px, 2.5vw, 16px); font-weight: 700;
         }
 
@@ -165,17 +240,17 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; 
+            justify-content: flex-end;
             align-items: center;
-            padding-bottom: 60px; 
+            padding-bottom: 56px;
         }
 
         .lp-icon-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px; 
+            gap: 15px;
             width: 100%;
-            max-width: 750px; 
+            max-width: 420px;
         }
 
         .lp-icon-item { 
@@ -203,28 +278,28 @@
 
         .lp-btn-gold {
             background: var(--accent-yellow);
-            color: #000; 
-            font-weight: 800; 
+            color: #000;
+            font-weight: 800;
             padding: 12px 45px;
-            border-radius: 50px; 
-            font-size: 16px; 
+            border-radius: 50px;
+            font-size: 16px;
             text-transform: uppercase;
-            text-decoration: none; 
+            text-decoration: none;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             position: absolute;
             bottom: 0;
             left: 50%;
-            transform: translate(-50%, 50%); 
+            transform: translate(-50%, 50%);
             z-index: 100;
             white-space: nowrap;
         }
 
-        /* --- 5. FOOTER BAR --- */
+        /* --- 5. FOOTER BAR --- (no own background; uses page background) */
         .lp-footer-bar {
             width: 100%;
-            height: 80px; 
-            background: linear-gradient(180deg, #333333 0%, #111111 100%);
+            height: 80px;
+            background: transparent;
             z-index: 40;
         }
 
@@ -234,20 +309,36 @@
         @media (min-width: 1024px) {
             .lp-combined-wrapper {
                 max-width: 1400px;
+                max-height: 85vh;
+            }
+
+            /* Desktop: no borders; contain so top of image is not cut */
+            .lp-combined-photo-wrap {
+                width: var(--lp-photo-width-desktop);
+                border: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            .lp-combined-photo {
+                object-fit: contain;
+                object-position: left var(--lp-photo-pos-y-desktop);
+                border: none;
+                outline: none;
+                box-shadow: none;
             }
 
             .lp-overlay-top {
-                padding-top: 10%;
+                padding-top: 12%;
             }
 
-            /* MOVED LOWER & CLOSER */
+            .lp-overlay-left-spacer {
+                flex: 0 0 var(--lp-photo-width-desktop);
+            }
+
             .lp-icon-grid {
-                max-width: 700px; /* Brighter closer together */
-                gap: 30px;        /* Tighter gap */
-            }
-
-            .lp-overlay-bottom {
-                padding-bottom: 65px; /* Pushed lower towards the button */
+                max-width: 420px;
+                gap: 24px;
             }
 
             .lp-icon-img {
@@ -258,6 +349,10 @@
             .lp-icon-label {
                 font-size: 15px;
             }
+
+            .lp-overlay-bottom {
+                padding-bottom: 64px;
+            }
         }
 
         /* =========================================
@@ -265,10 +360,46 @@
            ========================================= */
         @media (max-width: 768px) {
             .lp-titles-overlay { margin-top: -140px; }
-            .lp-overlay-top { padding-top: 22%; }
-            .lp-overlay-left-spacer { flex: 0 0 58%; }
-            .lp-overlay-bottom { padding-bottom: 50px; }
-            .lp-icon-grid { gap: 8px; max-width: 95%; }
+            .lp-hr { margin-bottom: 12px; }
+            .lp-combined-wrapper {
+                aspect-ratio: 3 / 4;
+                max-height: 82vh;
+                margin-top: -24px;
+            }
+            /* Mobile: use --lp-photo-width-mobile and --lp-photo-pos-y-mobile from :root, no border */
+            .lp-combined-photo-wrap {
+                width: var(--lp-photo-width-mobile);
+                border: none;
+            }
+            .lp-combined-photo {
+                object-fit: contain;
+                object-position: left var(--lp-photo-pos-y-mobile);
+            }
+            /* Quote block lower so it sits at same level as the image (face/chest) */
+            .lp-overlay-top {
+                flex: 1;
+                min-height: 0;
+                padding-top: 40%;
+                padding-bottom: 4%;
+                align-items: center;
+            }
+            .lp-overlay-left-spacer {
+                flex: 0 0 var(--lp-photo-width-mobile);
+            }
+            .lp-overlay-right-text {
+                text-align: center;
+                justify-content: center;
+            }
+            .lp-insta-line {
+                justify-content: center;
+            }
+            .lp-overlay-bottom {
+                padding-bottom: 48px;
+            }
+            .lp-icon-grid {
+                gap: 12px;
+                max-width: 95%;
+            }
             .lp-portrait { max-height: 55vh; }
         }
     </style>
@@ -288,10 +419,18 @@
     </div>
 
     <section class="lp-combined-wrapper">
-        <picture>
-            <source media="(min-width: 1024px)" srcset="images/fondowitharchdesktop.png">
-            <img src="images/fondowitharch.png" alt="Carlos Olid" class="lp-fondowitharch-img">
-        </picture>
+        <div class="lp-combined-canvas">
+                <div class="lp-combined-bg" aria-hidden="true"></div>
+                <div class="lp-combined-photo-wrap">
+                    <img src="images/fondo.png" alt="Carlos Olid" class="lp-combined-photo">
+                </div>
+                <div class="lp-arch-overlay" aria-hidden="true">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Full-width arch: curve in lower ~30% so bigger % of image is visible -->
+                        <path d="M 0 100 L 0 80 Q 50 46 100 80 L 100 100 Z" fill="#ffffff"/>
+                    </svg>
+                </div>
+            </div>
 
         <div class="lp-overlay-content">
             <div class="lp-overlay-top">
